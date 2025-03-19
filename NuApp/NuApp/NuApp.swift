@@ -8,10 +8,12 @@
 import SwiftUI
 
 @main
-struct NuAppApp: App {
+struct NuApp: App {
+    private let appCoordinator: AppCoordinatorProtocol = AppCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            appCoordinator.start()
         }
     }
 }

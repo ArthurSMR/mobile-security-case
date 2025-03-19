@@ -7,18 +7,22 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SplashScreen: View {
+    @ObservedObject var appState: AppStateViewModel
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Image("nu_icon")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 160, height: 160, alignment: .center)
         }
-        .padding()
+        .containerRelativeFrame([.horizontal, .vertical])
+        .background(Commons.Colors.purple.color)
+        .onAppear {
+            Task {
+                await appState.initializeApp()
+            }
+        }
     }
-}
-
-#Preview {
-    ContentView()
 }
