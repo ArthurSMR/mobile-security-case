@@ -31,8 +31,7 @@ final class AppStateViewModel: ObservableObject {
     @MainActor
     func initializeApp() async {
         state = .loading
-        
-        if securityManager.isJailbroken() {
+        if securityManager.isJailbroken {
             state = .insecure
         }
     }
