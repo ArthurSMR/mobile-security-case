@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NBSecurityManagerProtocol {
+public protocol NBSecurityManagerProtocol {
     var isJailbroken: Bool { get }
 }
 
