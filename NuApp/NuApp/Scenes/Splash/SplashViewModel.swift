@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class AppStateViewModel: ObservableObject {
+final class SplashViewModel: ObservableObject {
     
     enum State: String {
         case loading
