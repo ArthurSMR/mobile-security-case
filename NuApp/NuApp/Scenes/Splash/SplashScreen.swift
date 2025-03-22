@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SplashScreen: View {
-    @ObservedObject var appState: AppStateViewModel
+    @ObservedObject var appState: SplashViewModel
     
     var body: some View {
         VStack {

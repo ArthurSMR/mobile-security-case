@@ -14,8 +14,10 @@ protocol AppCoordinatorProtocol {
 final class AppCoordinator: AppCoordinatorProtocol {
     
     func start() -> AnyView {
-        let securityManager: SecurityManagerProtocol = SecurityManager()
-        let appState = AppStateViewModel(securityManager: securityManager)
-        return AnyView(SplashScreen(appState: appState))
+        let fileManager = NBFileManager()
+        let securityManager: NBSecurityManagerProtocol = NBSecurity.makeNBSecurityManager()
+        let appStateViewModel = SplashViewModel(securityManager: securityManager)
+        let splashScreen = SplashScreen(appState: appStateViewModel)
+        return AnyView(splashScreen)
     }
 }

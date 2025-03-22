@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class AppStateViewModel: ObservableObject {
+final class SplashViewModel: ObservableObject {
     
     enum State: String {
         case loading
@@ -18,10 +18,10 @@ final class AppStateViewModel: ObservableObject {
     
     @Published var state: State = .loading
     
-    private let securityManager: SecurityManagerProtocol
+    private let securityManager: NBSecurityManagerProtocol
     
     init(state: State = .loading,
-         securityManager: SecurityManagerProtocol) {
+         securityManager: NBSecurityManagerProtocol) {
         self.state = state
         self.securityManager = securityManager
     }
@@ -31,8 +31,7 @@ final class AppStateViewModel: ObservableObject {
     @MainActor
     func initializeApp() async {
         state = .loading
-        
-        if securityManager.isJailbreak() {
+        if securityManager.isJailbroken {
             state = .insecure
         }
     }
