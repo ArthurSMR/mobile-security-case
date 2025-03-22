@@ -20,7 +20,7 @@ final class NBSecurityManager: NBSecurityManagerProtocol {
     
     lazy var jailbreakIndicators: [NBSecurityCheck] = {
         let failedChecks = checks.filter { $0.isCompromised() }
-        failedChecks.forEach { print($0.description) }
+        failedChecks.forEach { print("[NBSecurity] - \($0.description)") }
         return failedChecks
     }()
     
