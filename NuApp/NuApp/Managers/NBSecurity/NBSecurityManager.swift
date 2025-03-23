@@ -40,7 +40,8 @@ final class NBSecurityManager: NBSecurityManagerProtocol {
             SuspiciousDynamicLibraryCheck(),
             FridaEnvironmentVariableCheck(),
             WritableSystemFileCheck(fileManager: fileManager),
-            AntiDebuggingCheck()
+            AntiDebuggingCheck(),
+            SimulatorCheck()
         ]
     }
 }

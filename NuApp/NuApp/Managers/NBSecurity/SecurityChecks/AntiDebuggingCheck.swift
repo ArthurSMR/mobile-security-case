@@ -8,7 +8,7 @@
 import Foundation
 
 final class AntiDebuggingCheck: NBSecurityCheck {
-    var description: String { "Anti-Debugging detected" }
+    var description: String { "Debugging detected" }
     
     func isCompromised() -> Bool {
         isDebuggerAttached()
@@ -17,13 +17,21 @@ final class AntiDebuggingCheck: NBSecurityCheck {
     private func isDebuggerAttached() -> Bool {
         var info = kinfo_proc()
         var size = MemoryLayout<kinfo_proc>.stride
-        let mib = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
         
-        let result = sysctl(UnsafeMutablePointer(mutating: mib), u_int(mib.count), &info, &size, nil, 0)
+        // Management Information Base - Check kernel
+        // CTL_KERN -> Accessing kernel informations
+        // KERN_PROC -> Details about the proccess
+        // KERN_PROC_PID -> Specifying PID
+        // getpid() -> PID for current process
+        var mib = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
         
+        // sysctl -> Check for kernel informations
+        let result = sysctl(&mib, u_int(mib.count), &info, &size, nil, 0)
+        
+        // If sysctl was succeeded
         guard result == 0 else { return false }
         
-        // Verifica a flag P_TRACED
+        // Check a flag P_TRACED
         return (info.kp_proc.p_flag & P_TRACED) != 0
     }
 }
