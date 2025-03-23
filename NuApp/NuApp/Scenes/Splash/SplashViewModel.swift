@@ -9,21 +9,15 @@ import SwiftUI
 import NBSecurity
 
 final class SplashViewModel: ObservableObject {
-    
-    enum State: String {
-        case loading
-        case insecure
-        case unauthenticated
-        case authenticated
-    }
-    
-    @Published var state: State = .loading
-    
     private let securityManager: NBSecurityManagerProtocol
+    @Published var showIsSecureAlert = false
     
-    init(state: State = .loading,
-         securityManager: NBSecurityManagerProtocol) {
-        self.state = state
+    /// If you want to debug and see the logs, turn this bool to true.
+    var isDebugSession: Bool = true
+    
+    
+    
+    init(securityManager: NBSecurityManagerProtocol) {
         self.securityManager = securityManager
     }
     
@@ -31,9 +25,25 @@ final class SplashViewModel: ObservableObject {
     
     @MainActor
     func initializeApp() async {
-        state = .loading
-        if securityManager.isJailbroken {
-            state = .insecure
+        checkAppSecurity()
+    }
+    
+    private func checkAppSecurity() {
+        if securityManager.isSecure {
+            handleIsSecureApp()
+        } else {
+            handleInsecureApp()
         }
+    }
+    
+    private func handleIsSecureApp() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.showIsSecureAlert = true
+        }
+    }
+    
+    private func handleInsecureApp() {
+        if isDebugSession { return }
+        exit(-1)
     }
 }

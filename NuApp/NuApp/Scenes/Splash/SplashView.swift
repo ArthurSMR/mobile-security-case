@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SplashView.swift
 //  NuApp
 //
 //  Created by Arthur Rodrigues on 19/03/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SplashScreen: View {
+struct SplashView: View {
     @ObservedObject var viewModel: SplashViewModel
     @State private var showLogsModal = false
     
@@ -22,18 +22,19 @@ struct SplashScreen: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 160, height: 160, alignment: .center)
-                    
-                    Button(action: {
-                        showLogsModal.toggle()
-                    }) {
-                        Text("Logs")
-                            .foregroundColor(Commons.Colors.purple.color)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(8)
+                }
+            }
+            .toolbar {
+                if viewModel.isDebugSession {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showLogsModal.toggle()
+                        }) {
+                            Image(systemName: "info.circle")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                        }
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 16)
                 }
             }
             .onAppear {
@@ -44,7 +45,11 @@ struct SplashScreen: View {
             .sheet(isPresented: $showLogsModal) {
                 LogsView()
             }
+            .alert(isPresented: $viewModel.showIsSecureAlert) {
+                Alert(title: Text("Status de segurança"),
+                      message: Text("Seu app está seguro"),
+                      dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
-

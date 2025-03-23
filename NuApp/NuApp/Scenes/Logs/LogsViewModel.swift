@@ -11,12 +11,11 @@ import OSLog
 final class LogsViewModel: ObservableObject {
     @Published var logs: [LogItem] = []
     @Published var isLoading: Bool = false
-    private var logger = Logger(subsystem: "com.example.NuApp", category: "NuApp")
+    
+    private var subsystem: String { "NBSecurity" }
+    private var category: String { "Security" }
     
     func fetchLogs() {
-        let subsystem = "com.example.MyApp"
-        let category = "App"
-        
         isLoading = true
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in

@@ -8,13 +8,16 @@
 import Foundation
 
 final class AntiDebuggingCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .debugging }
     var description: String { "Debugging detected" }
     
     func isCompromised() -> Bool {
         isDebuggerAttached()
     }
     
-    // http://developer.apple.com/library/archive/qa/qa1361/_index.html
+    /// This method is based on Apple's forum for anti-debugging
+    /// http://developer.apple.com/library/archive/qa/qa1361/_index.html
+    /// - Returns: True - if is debugging
     private func isDebuggerAttached() -> Bool {
         var info = kinfo_proc()
         var size = MemoryLayout<kinfo_proc>.stride
