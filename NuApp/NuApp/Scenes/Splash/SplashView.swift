@@ -45,6 +45,11 @@ struct SplashView: View {
             .sheet(isPresented: $showLogsModal) {
                 LogsView()
             }
+            .alert(isPresented: $viewModel.showIsSecureAlert) {
+                Alert(title: Text("Status de segurança"),
+                      message: Text("Seu app está seguro"),
+                      dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
