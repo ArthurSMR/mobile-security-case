@@ -13,9 +13,7 @@ final class SplashViewModel: ObservableObject {
     @Published var showIsSecureAlert = false
     
     /// If you want to debug and see the logs, turn this bool to true.
-    var isDebugSession: Bool = true
-    
-    
+    var isDebugSession: Bool = false
     
     init(securityManager: NBSecurityManagerProtocol) {
         self.securityManager = securityManager
