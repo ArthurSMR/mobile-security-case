@@ -7,6 +7,8 @@
 
 import Foundation
 
+import OSLog
+
 public protocol NBSecurityManagerProtocol {
     var isJailbroken: Bool { get }
 }
@@ -20,7 +22,10 @@ final class NBSecurityManager: NBSecurityManagerProtocol {
     
     lazy var jailbreakIndicators: [NBSecurityCheck] = {
         let failedChecks = checks.filter { $0.isCompromised() }
-        failedChecks.forEach { print("[NBSecurity] - \($0.description)") }
+        failedChecks.forEach {
+            let logger = Logger(subsystem: "com.example.MyApp", category: "App")
+            logger.log("[NBSecurity] - \($0.description)")
+        }
         return failedChecks
     }()
     
@@ -34,7 +39,9 @@ final class NBSecurityManager: NBSecurityManagerProtocol {
             SuspiciousProcessGroupCheck(),
             SuspiciousDynamicLibraryCheck(),
             FridaEnvironmentVariableCheck(),
-            WritableSystemFileCheck(fileManager: fileManager)
+            WritableSystemFileCheck(fileManager: fileManager),
+            AntiDebuggingCheck(),
+            SimulatorCheck()
         ]
     }
 }
