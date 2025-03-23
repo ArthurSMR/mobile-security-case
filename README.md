@@ -34,6 +34,8 @@ Ao iniciar o aplicativo em um dispositivo físico, sem debug, o app deverá most
 
 ![Tela de Sucesso](assets/success.png)
 
+- Caso tenha alguma vulnerabilidade que o módulo criado tenha identificado, o app será finalizado.
+
 #### Debug Session:
 
 Durante a execução no modo **DEBUG**, é possível ativar uma variável chamada `SplashViewModel.isDebugSession`. Quando ativada, ela permite visualizar um ícone de informação no canto superior direito da tela. Ao clicar neste ícone, você pode acessar os logs relacionados à segurança do NBSecurity.
