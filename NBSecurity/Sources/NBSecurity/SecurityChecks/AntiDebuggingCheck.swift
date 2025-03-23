@@ -14,6 +14,7 @@ final class AntiDebuggingCheck: NBSecurityCheck {
         isDebuggerAttached()
     }
     
+    // http://developer.apple.com/library/archive/qa/qa1361/_index.html
     private func isDebuggerAttached() -> Bool {
         var info = kinfo_proc()
         var size = MemoryLayout<kinfo_proc>.stride

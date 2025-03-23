@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NBSecurity
 
 final class SplashViewModel: ObservableObject {
     

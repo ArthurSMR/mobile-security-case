@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		362D855B2D8FC26000DC97C3 /* NBSecurity in Frameworks */ = {isa = PBXBuildFile; productRef = 362D855A2D8FC26000DC97C3 /* NBSecurity */; };
+		362D855D2D8FC27E00DC97C3 /* NBSecurity in Frameworks */ = {isa = PBXBuildFile; productRef = 362D855C2D8FC27E00DC97C3 /* NBSecurity */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3648A1332D8B7A2000411432 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				362D855D2D8FC27E00DC97C3 /* NBSecurity in Frameworks */,
+				362D855B2D8FC26000DC97C3 /* NBSecurity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +97,8 @@
 			);
 			name = NuApp;
 			packageProductDependencies = (
+				362D855A2D8FC26000DC97C3 /* NBSecurity */,
+				362D855C2D8FC27E00DC97C3 /* NBSecurity */,
 			);
 			productName = NuApp;
 			productReference = 3648A1212D8B7A1D00411432 /* NuApp.app */;
@@ -146,6 +155,9 @@
 			);
 			mainGroup = 3648A1182D8B7A1D00411432;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				362D85592D8FC26000DC97C3 /* XCLocalSwiftPackageReference "../NBSecurity" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3648A1222D8B7A1D00411432 /* Products */;
 			projectDirPath = "";
@@ -338,7 +350,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
@@ -380,7 +392,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
@@ -475,6 +487,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		362D85592D8FC26000DC97C3 /* XCLocalSwiftPackageReference "../NBSecurity" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../NBSecurity;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		362D855A2D8FC26000DC97C3 /* NBSecurity */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NBSecurity;
+		};
+		362D855C2D8FC27E00DC97C3 /* NBSecurity */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NBSecurity;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3648A1192D8B7A1D00411432 /* Project object */;
 }

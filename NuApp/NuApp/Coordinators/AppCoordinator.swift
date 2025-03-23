@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NBSecurity
 
 protocol AppCoordinatorProtocol {
     func start() -> AnyView
@@ -14,7 +15,7 @@ protocol AppCoordinatorProtocol {
 final class AppCoordinator: AppCoordinatorProtocol {
     
     func start() -> AnyView {
-        let securityManager: NBSecurityManagerProtocol = NBSecurity.makeNBSecurityManager()
+        let securityManager = NBSecurity.makeNBSecurityManager()
         let splashViewModel = SplashViewModel(securityManager: securityManager)
         let splashScreen = SplashScreen(viewModel: splashViewModel)
         return AnyView(splashScreen)
