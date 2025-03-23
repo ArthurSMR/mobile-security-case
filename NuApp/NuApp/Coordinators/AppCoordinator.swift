@@ -17,7 +17,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     func start() -> AnyView {
         let securityManager = NBSecurity.makeNBSecurityManager()
         let splashViewModel = SplashViewModel(securityManager: securityManager)
-        let splashScreen = SplashScreen(viewModel: splashViewModel)
-        return AnyView(splashScreen)
+        let splashView = SplashView(viewModel: splashViewModel)
+        return AnyView(splashView)
     }
 }

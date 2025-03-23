@@ -8,6 +8,7 @@
 import Foundation
 
 final class SuspiciousSystemFileCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .jailbreak }
     private let fileManager: NBFileManagerProtocol
     
     var description: String { "Suspicious system file detected" }

@@ -9,38 +9,50 @@ import Foundation
 import OSLog
 
 public protocol NBSecurityManagerProtocol {
+    var isSecure: Bool { get }
     var isJailbroken: Bool { get }
+    var isSimulator: Bool { get }
+    var isDebugging: Bool { get }
 }
 
 final class NBSecurityManager: NBSecurityManagerProtocol {
     
-    private let fileManager: NBFileManagerProtocol
+    var isSecure: Bool {
+        let jailbreakSafe = !isJailbroken
+        let simulatorSafe = !isSimulator
+        let debuggingSafe = !isDebugging
+        return jailbreakSafe && simulatorSafe && debuggingSafe
+    }
+    
     private var checks: [NBSecurityCheck]
     
-    var isJailbroken: Bool { !jailbreakIndicators.isEmpty }
+    var isJailbroken: Bool {
+        return hasCompromisedCheck(ofType: .jailbreak)
+    }
     
-    lazy var jailbreakIndicators: [NBSecurityCheck] = {
-        let failedChecks = checks.filter { $0.isCompromised() }
-        failedChecks.forEach {
-            let logger = Logger(subsystem: "com.example.MyApp", category: "App")
-            logger.log("[NBSecurity] - \($0.description)")
-        }
-        return failedChecks
-    }()
+    var isSimulator: Bool {
+        return hasCompromisedCheck(ofType: .simulator)
+    }
+    
+    var isDebugging: Bool {
+        return hasCompromisedCheck(ofType: .debugging)
+    }
     
     // MARK: - Initialization
     
-    init(fileManager: NBFileManagerProtocol) {
-        self.fileManager = fileManager
-        self.checks = [
-            SuspiciousAppCheck(fileManager: fileManager),
-            SuspiciousSystemFileCheck(fileManager: fileManager),
-            SuspiciousProcessGroupCheck(),
-            SuspiciousDynamicLibraryCheck(),
-            FridaEnvironmentVariableCheck(),
-            WritableSystemFileCheck(fileManager: fileManager),
-            AntiDebuggingCheck(),
-            SimulatorCheck()
-        ]
+    init(checks: [NBSecurityCheck]) {
+        self.checks = checks
+    }
+    
+    private func hasCompromisedCheck(ofType type: NBSecurityCheckType) -> Bool {
+        let failedChecks = checks.filter { $0.type == type && $0.isCompromised() }
+        
+        if !failedChecks.isEmpty {
+            let logger = Logger(subsystem: "NBSecurity", category: "Security")
+            failedChecks.forEach { logger.log("[NBSecurity] - \($0.description)") }
+            return true
+        }
+        
+        return false
     }
 }

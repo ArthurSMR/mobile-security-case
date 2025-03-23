@@ -8,6 +8,7 @@
 import Foundation
 
 final class SuspiciousProcessGroupCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .jailbreak }
     var description: String { "Suspicious process group" }
     
     func isCompromised() -> Bool {

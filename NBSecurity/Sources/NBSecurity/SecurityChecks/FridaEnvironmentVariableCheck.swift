@@ -8,6 +8,7 @@
 import Foundation
 
 final class FridaEnvironmentVariableCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .jailbreak }
     var description: String { "Frida environment variable found" }
     
     func isCompromised() -> Bool {

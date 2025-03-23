@@ -8,6 +8,7 @@
 import Foundation
 
 final class SimulatorCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .simulator }
     var description: String { "Simulator execution detected" }
     
     var isRunningOnSimulator: Bool {

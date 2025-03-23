@@ -11,6 +11,7 @@ import Foundation
 final class SuspiciousDynamicLibraryCheck: NBSecurityCheck {
     private let suspiciousLibraries = Set(Constants.suspiciousLibraries.map { $0.lowercased() })
     
+    var type: NBSecurityCheckType { .jailbreak }
     var description: String { return "Suspicious dynamic library" }
     
     func isCompromised() -> Bool {

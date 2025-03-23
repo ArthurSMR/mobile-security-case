@@ -8,6 +8,7 @@
 import Foundation
 
 final class WritableSystemFileCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .jailbreak }
     private let fileManager: NBFileManagerProtocol
     
     var description: String { "Writable system file detected" }

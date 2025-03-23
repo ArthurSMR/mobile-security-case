@@ -12,18 +12,16 @@ final class SplashViewModel: ObservableObject {
     
     enum State: String {
         case loading
-        case insecure
-        case unauthenticated
-        case authenticated
+        case loaded
     }
-    
-    @Published var state: State = .loading
     
     private let securityManager: NBSecurityManagerProtocol
     
+    /// If you want to debug and see the logs, turn this bool to true.
+    var isDebugSession: Bool = true
+    
     init(state: State = .loading,
          securityManager: NBSecurityManagerProtocol) {
-        self.state = state
         self.securityManager = securityManager
     }
     
@@ -31,9 +29,17 @@ final class SplashViewModel: ObservableObject {
     
     @MainActor
     func initializeApp() async {
-        state = .loading
-        if securityManager.isJailbroken {
-            state = .insecure
+        checkAppSecurity()
+    }
+    
+    private func checkAppSecurity() {
+        if !securityManager.isSecure {
+            handleInsecureApp()
         }
+    }
+    
+    private func handleInsecureApp() {
+        if isDebugSession { return }
+        exit(-1)
     }
 }

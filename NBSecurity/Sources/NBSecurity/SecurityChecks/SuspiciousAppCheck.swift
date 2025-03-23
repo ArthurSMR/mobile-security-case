@@ -8,6 +8,8 @@
 import Foundation
 
 final class SuspiciousAppCheck: NBSecurityCheck {
+    var type: NBSecurityCheckType { .jailbreak }
+    
     private let fileManager: NBFileManagerProtocol
     var description: String { "Suspicious app installed" }
     
