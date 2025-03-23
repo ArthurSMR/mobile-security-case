@@ -8,13 +8,6 @@
 import Foundation
 import OSLog
 
-public protocol NBSecurityManagerProtocol {
-    var isSecure: Bool { get }
-    var isJailbroken: Bool { get }
-    var isSimulator: Bool { get }
-    var isDebugging: Bool { get }
-}
-
 final class NBSecurityManager: NBSecurityManagerProtocol {
     
     var isSecure: Bool {

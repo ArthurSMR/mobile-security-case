@@ -21,6 +21,13 @@ final class SuspiciousAppCheck: NBSecurityCheck {
         isSuspiciousAppInstalled()
     }
     
+    /// Checks if any suspicious applications are installed on the device.
+    ///
+    /// This method verifies the presence of known suspicious apps by checking
+    /// their installation paths. If any of these paths exist, it indicates
+    /// a potential security risk.
+    ///
+    /// - Returns: `true` if a suspicious app is detected, otherwise `false`.
     private func isSuspiciousAppInstalled() -> Bool {
         let suspiciousAppsPaths: [String] = Constants.suspiciousAppsPaths
         

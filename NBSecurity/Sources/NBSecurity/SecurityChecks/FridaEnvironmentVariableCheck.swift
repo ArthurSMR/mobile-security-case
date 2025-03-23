@@ -15,6 +15,12 @@ final class FridaEnvironmentVariableCheck: NBSecurityCheck {
         isFridaEnvironmentVariablePresent()
     }
     
+    /// Checks if the Frida environment variables are present.
+    ///
+    /// This method scans the process environment for known Frida-related variables.
+    /// Frida is a dynamic instrumentation toolkit often used for reverse engineering.
+    ///
+    /// - Returns: `true` if any Frida-related environment variable is detected, otherwise `false`.
     private func isFridaEnvironmentVariablePresent() -> Bool {
         let environmentVariables = ["FRIDA", "FRIDA_SERVER"]
         let environment = ProcessInfo.processInfo.environment

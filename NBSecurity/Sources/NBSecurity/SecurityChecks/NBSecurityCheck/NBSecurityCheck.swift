@@ -13,15 +13,22 @@ enum NBSecurityCheckType {
     case debugging
 }
 
+/// A protocol that defines a security check mechanism.
+/// Implementations of this protocol perform specific security verifications within the application.
 protocol NBSecurityCheck {
     
-    /// Security Type
+    /// The type of security check being performed.
+    ///
+    /// This property indicates whether the check is related to jailbreak detection, debugging, simulator detection, etc.
     var type: NBSecurityCheckType { get }
     
-    /// Description for the security check
+    /// A description of the security check.
+    ///
+    /// This property provides a human-readable explanation of what the security check does.
     var description: String { get }
     
-    /// This method will check the security
-    /// - Returns: It will return true if is compromised or any other security issue.
+    /// Executes the security check.
+    ///
+    /// - Returns: `true` if the security check detects a compromise or security issue, otherwise `false`.
     func isCompromised() -> Bool
 }
