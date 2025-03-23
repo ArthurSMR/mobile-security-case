@@ -14,7 +14,15 @@ final class SimulatorCheck: NBSecurityCheck {
         ProcessInfo().environment["SIMULATOR_DEVICE_NAME"] != nil
     }
     
+    var isCompilingOnSimulator: Bool {
+#if targetEnvironment(simulator)
+        return true
+#else
+        return false
+#endif
+    }
+    
     func isCompromised() -> Bool {
-        isRunningOnSimulator
+        isRunningOnSimulator || isCompilingOnSimulator
     }
 }
